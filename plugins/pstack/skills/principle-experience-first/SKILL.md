@@ -1,12 +1,14 @@
 ---
 name: principle-experience-first
-description: "Apply when product, UX, or feature-scope tradeoffs come up. Choose user delight over implementation convenience; ship fewer polished features over more rough ones."
+description: "Apply when product, UX, or feature-scope tradeoffs come up. Choose speed first, then user delight over implementation convenience; ship fewer polished features over more rough ones."
 user-invocable: false
 ---
 
 # Experience First
 
 When implementation convenience conflicts with user delight, choose delight.
+
+Speed is the first part of the experience. When speed trades against polish or convenience, choose speed, per [Favour Performance](../principle-favour-performance/SKILL.md).
 
 - Every feature, control, and option must be justified
 - Ship less, ship better (polished experience with three features beats rough one with ten)

@@ -11,7 +11,7 @@ Maintainability is the work a reader must do to understand code. Track two axes:
 - **Collapse layers** that cost more than they save: wrappers with one caller, adapters with no second implementation, speculative indirection that was never needed. Inline them.
 - **Make adjacent layers change the abstraction.** A layer that repeats the same methods and arguments adds reader load without compression. Collapse pass-through layers.
 - **Demand interface compression.** A broad interface that hides little complexity makes readers learn both the surface and the implementation. Prefer boundaries that hide meaningful decisions.
-- **Shrink state scope:** prefer pure functions (returns over mutations), locals over fields, fields over module state, and module state over globals. Derive instead of sync.
+- **Shrink state scope:** prefer pure functions (returns over mutations, or in C an out-parameter per the [c-best-practices](../c-best-practices/SKILL.md) skill), locals over fields, fields over module state, and module state over globals. Declare each variable at the smallest scope that uses it, and never reuse one variable for two purposes. Derive instead of sync.
 - **Name the invariant at the boundary,** not in every consumer, so the reader learns it once.
 - Before adding a layer or a piece of state, ask: does it reduce reader load elsewhere by at least as much?
 
