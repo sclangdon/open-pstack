@@ -3,6 +3,46 @@
 Open Pstack lands on green: Mergify merges a ready PR to main once verify and exact-head live-gate pass and no review thread is unresolved, and a workflow resolves Unfret's own threads. A PR that touches `.github/` or the Mergify config also waits for Unfret, and workflow changes require operator queueing.
 This port applies the Cursor → Claude Code substitutions in skill bodies. Earlier drafts left them flagged; this revision resolves them. A later pass added a Codex build that shares the same skills; see [Codex port](#codex-port) below.
 
+## 1.21.0-simon.1 merges Simon's rules into the principles
+
+This fork release keeps Open Pstack 1.21.0 and its Cursor pstack 0.15.36 sync. It moves every rule from `scl-stack` into the plugin and retires the `simon-mode` overlay. No rule outranks another anymore. Each pstack text that a rule used to override now says what the rule says.
+
+**New principles.** `poteto-mode` indexes eleven new `principle-*` leaves. Favour Performance and Be Boring join Core. Prefer Arrays, Create Libraries, Vet Third-Party Libraries, and Trust the Single User join Architecture. Assert Internal Correctness, Use Option Structs, Organise Branches by Likelihood, and Zero Warnings form a new Implementation group.
+
+**C rules.** The `c-best-practices` skill holds the rules that apply only to C and languages derived from it. It loads for `.c` and `.h` files, as `typescript-best-practices` does for TypeScript.
+
+**Agent rules.** `simon-mode` never loaded `agent-rules/`. Its three rules are now active. Agents do only the work that was asked for, settle decisions without waiting, and keep requirements and decisions in `meta/` or `knowledge/`.
+
+Each rule now lives here:
+
+| `scl-stack` rule | Where it lives |
+| --- | --- |
+| `rule-do-only-whats-asked` | `principle-laziness-protocol`. Also `principle-never-block-on-the-human`, `principle-subtract-before-you-add`, `principle-fix-root-causes`, the broken-skill trigger in `poteto-mode`, and the Feature and Autonomous run playbooks. |
+| `rule-just-do-it` | `principle-never-block-on-the-human` |
+| `rule-meta-no-comments` | The Comments section of `poteto-mode`. Also `no-comments` step 5, the Multi-phase plan playbook's default path, and the architect runner prompt. |
+| `principle-compare-external` | `principle-compare-external-designs` |
+| `principle-create-libraries` | `principle-create-libraries`. The upgradable-struct pattern is in `c-best-practices`. |
+| `principle-data-preceeds-algorithms` | `principle-foundational-thinking`, whose "Data structures first" already says it |
+| `principle-do-the-thing` | `principle-be-boring` |
+| `principle-favour-performance` | `principle-favour-performance`. Also `principle-experience-first`, `arena`, `thermo-nuclear-code-quality-review`, and the Hillclimb, Perf issue, and Refactoring playbooks. |
+| `principle-least-work` | `principle-laziness-protocol` |
+| `principle-machiavellian` | `principle-trust-the-single-user` |
+| `principle-prefer-arrays` | `principle-prefer-arrays`. Also `principle-model-the-domain`, `principle-foundational-thinking`, the Feature playbook, the architect runner prompt, and `thermo-nuclear-code-quality-review`. |
+| `principle-third-party-libraries` | `principle-vet-third-party-libraries` |
+| `preference-be-boring` | `principle-be-boring`. Also `principle-laziness-protocol`, `principle-model-the-domain`, `principle-foundational-thinking`, and `thermo-nuclear-code-quality-review`. |
+| `preference-option-structs` | `principle-use-option-structs` |
+| `preference-organise-by-likelihood` | `principle-organise-branches-by-likelihood` |
+| `rule-assert-internal-correctness` | `principle-assert-internal-correctness`. Also `principle-boundary-discipline`, `principle-type-system-discipline`, `principle-subtract-before-you-add`, `deslop`, `typescript-best-practices`, and the architect runner prompt. |
+| `rule-document-public-headers` | `c-best-practices`. Also the Comments section of `poteto-mode` and the keep list in `comment-sicko`. |
+| `rule-employ-goto` | `c-best-practices` |
+| `rule-function-returns` | `c-best-practices`. Also `principle-minimize-reader-load`. |
+| `rule-pack-structures` | `c-best-practices` |
+| `rule-reduce-scope` | `principle-minimize-reader-load` |
+| `rule-types` | `c-best-practices` |
+| `rule-zero-warnings` | `principle-zero-warnings`. Also the suppression rule in `comment-sicko`. |
+
+When you merge a later Open Pstack release, keep the fork's lines in the files above, and give the result a new `-simon.N` version. Claude Code refreshes an installed plugin only when its version changes.
+
 ## 1.21.0 adds Grok as a parent harness
 
 Open Pstack 1.21.0 keeps the Cursor pstack 0.15.36 sync. Default roles and panels are unchanged.
