@@ -3,6 +3,16 @@
 Open Pstack lands on green: Mergify merges a ready PR to main once verify and exact-head live-gate pass and no review thread is unresolved, and a workflow resolves Unfret's own threads. A PR that touches `.github/` or the Mergify config also waits for Unfret, and workflow changes require operator queueing.
 This port applies the Cursor → Claude Code substitutions in skill bodies. Earlier drafts left them flagged; this revision resolves them. A later pass added a Codex build that shares the same skills; see [Codex port](#codex-port) below.
 
+## 1.21.0-simon.2 stops trading away requirements
+
+This fork release keeps Open Pstack 1.21.0. It closes two gaps that let an agent copy a popular design that could not meet a requirement, measure the miss, and report it as a trade-off.
+
+**Requirements Are Not Trade-offs.** A new Core principle, `principle-requirements-are-not-trade-offs`, applies when a measurement, test, or review shows the chosen design misses a requirement or a principle's bar. The design has failed. The agent reopens it instead of listing the miss as a trade-off, and may report a requirement as unmet only after a design built around that requirement also misses it. `poteto-mode` now says that a principle cited in a reply binds the result.
+
+**Borrowed designs.** `principle-compare-external-designs` writes down the assumption each external design rests on and rejects one that contradicts a requirement, however popular it is. `principle-favour-performance` says a design that measures slower than a third-party application or the code it replaces has failed, and takes the usual case from our workload, never from a borrowed design's. Architect's runner prompt applies the assumption check. Its rationale template lists each requirement with a measurable target, names a borrowed design's assumption, and keeps requirement misses out of "Tradeoffs accepted". Its Phase E scraps a design after one requirement miss caused by the design's own assumption. Arena treats each requirement as a pass or fail gate outside its rubric.
+
+When you merge a later Open Pstack release, keep these lines in `poteto-mode/SKILL.md`, `architect/SKILL.md`, `architect/references/rationale-template.md`, `architect/references/runner-prompt.md` and `arena/SKILL.md`.
+
 ## 1.21.0-simon.1 merges Simon's rules into the principles
 
 This fork release keeps Open Pstack 1.21.0 and its Cursor pstack 0.15.36 sync. It moves every rule from `scl-stack` into the plugin and retires the `simon-mode` overlay. No rule outranks another anymore. Each pstack text that a rule used to override now says what the rule says.
