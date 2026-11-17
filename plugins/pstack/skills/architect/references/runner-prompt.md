@@ -7,6 +7,7 @@ You are producing one candidate design in architect's parallel exploration. Read
 Apply the following discipline. The orchestrator compares candidates on these axes to pick a base.
 
 - Caller's usage first. Write the README-style usage and two or three real call sites before the types, then derive the type sketch from them. The usage is the spec. The two must agree, so reconcile the sketch to the usage, not the reverse.
+- Borrowed designs. When the shape copies another project, name the assumption that project's design rests on and check it against each requirement, per the **compare-external-designs** principle skill. Reject the copy if they conflict, however popular the project is.
 - Data structures first. Get the core types right and the code becomes obvious. Trace each dominant access pattern through the proposed structure, starting from an array per the **prefer-arrays** principle skill. Add a map, index, or cache only when a measurement shows it is faster.
 - Interface depth. Compare the capability hidden behind the public surface relative to the size of that surface. Prefer a simple interface that pulls complexity into the callee, even when the implementation becomes less simple. Do not put transport or wire types on the public API. Parse into domain types behind the interface.
 - Shared state: if two actors might both write, ask "what happens?" If the answer isn't "nothing," default to per-actor state with a merge at the read boundary, per the **separate-before-serializing-shared-state** principle skill.

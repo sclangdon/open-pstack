@@ -66,7 +66,9 @@ The signal is a *pattern*, not single instances. Tells:
 - Callers having to know the abstraction's internal rules to use it.
 - Two or more independent Phase D deviations of the same shape across the implementation.
 
-Use judgment. A few edge cases don't condemn an architecture. Some problems are legitimately complex. Complexity in the data is not complexity in the design.
+One instance is enough when a measurement or test shows the design misses a requirement, and the cause is an assumption the design rests on. Scrap it, per the **requirements-are-not-trade-offs** principle skill.
+
+Short of a requirement miss, use judgment. A few edge cases don't condemn an architecture. Some problems are legitimately complex. Complexity in the data is not complexity in the design.
 
 When you scrap:
 

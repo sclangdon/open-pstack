@@ -13,7 +13,7 @@ These skills share one tree across Claude Code, Codex, and Grok. Read [`referenc
 
 ## Non-negotiables
 
-The Principles section below grounds every trigger. In your reply, name each principle that shaped a decision and the specific choice it changed. Cite only principles whose leaf SKILL.md you read this session.
+The Principles section below grounds every trigger. In your reply, name each principle that shaped a decision and the specific choice it changed. Cite only principles whose leaf SKILL.md you read this session. A principle you cite binds the result. If the result breaks it, keep working until it does, per **Requirements Are Not Trade-offs**.
 
 Remaining triggers:
 
@@ -49,12 +49,13 @@ Read the leaf skill in full for any principle you apply. Each entry names when i
 - **Foundational Thinking.** Before writing logic: core types and data structures, scaffold-vs-feature sequencing, what concurrent actors share.
 - **Redesign from First Principles.** Integrating a new requirement into an existing design. Redesign as if it had been foundational from day one.
 - **Attack the Premise.** Two or more fixes that share one premise have failed the same gate. Write the premise down and test it directly before you write another fix that assumes it.
+- **Requirements Are Not Trade-offs.** A measurement, test, or review shows the chosen design misses a requirement or a measurable bar a principle sets. The design failed. Reopen it, and never report the miss as a trade-off.
 - **Subtract Before You Add.** Sequencing an addition, refactor, or rewrite. Remove dead weight first, then build on the simpler base.
 - **Minimize Reader Load.** Reviewing or shaping code that's hard to trace. Count layers and hidden state, collapse one-caller wrappers, shrink mutable scope.
 - **Outcome-Oriented Execution.** Planned rewrites and migrations with explicit phase boundaries. Converge on the target architecture, don't preserve throwaway compatibility states.
 - **Experience First.** Product, UX, or feature-scope tradeoffs. Speed comes first, then user delight over implementation convenience.
 - **Exhaust the Design Space.** A novel interaction or architectural decision with no precedent. Build 2-3 competing prototypes and compare before committing.
-- **Compare External Designs.** Designing something other projects have solved. Study at least three widely used projects, critique them, and take their best ideas.
+- **Compare External Designs.** Designing something other projects have solved. Study at least three widely used projects, critique them, and take their best ideas. Reject a design whose core assumption contradicts a requirement, however popular it is.
 - **Build the Lever.** Any non-trivial work. Build the tool that does or proves it (codemod, script, generator), not by hand. The tool is the artifact a reviewer reruns.
 
 **Architecture**
