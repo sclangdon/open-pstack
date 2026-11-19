@@ -3,6 +3,16 @@
 Open Pstack lands on green: Mergify merges a ready PR to main once verify and exact-head live-gate pass and no review thread is unresolved, and a workflow resolves Unfret's own threads. A PR that touches `.github/` or the Mergify config also waits for Unfret, and workflow changes require operator queueing.
 This port applies the Cursor → Claude Code substitutions in skill bodies. Earlier drafts left them flagged; this revision resolves them. A later pass added a Codex build that shares the same skills; see [Codex port](#codex-port) below.
 
+## 1.21.0-simon.3 takes requirements from the domain
+
+This fork release keeps Open Pstack 1.21.0. It stops an agent from setting an arbitrary numeric bar and then treating it as binding. In one project an agent set a precision target that no one had derived. Reaching it cost weeks and performance, and the physics of the problem needed orders of magnitude less.
+
+**Requirements Come from the Domain.** A new Core principle, `principle-requirements-come-from-the-domain`, applies when an agent sets, adopts, or chases a numeric bar such as accuracy, precision, tolerance, latency, or throughput. Each bar names its source: the user, a spec, or a derivation from the inputs' uncertainty, the model's error, and what the output feeds. A bar without a source stays out of plans, rubrics, tests, and designs. A test tolerance comes from the bar, never from machine epsilon. An expensive bar is re-derived before more work goes into meeting it.
+
+**Where it binds.** `principle-requirements-are-not-trade-offs` now binds only bars that have a source. Architect's rationale template lists each target's source. Arena requires a source for each numeric gate. `principle-test-behavior-not-implementation` derives a numeric tolerance from the requirement.
+
+When you merge a later Open Pstack release, keep these lines in `poteto-mode/SKILL.md`, `architect/references/rationale-template.md`, `arena/SKILL.md` and `principle-test-behavior-not-implementation/SKILL.md`.
+
 ## 1.21.0-simon.2 stops trading away requirements
 
 This fork release keeps Open Pstack 1.21.0. It closes two gaps that let an agent copy a popular design that could not meet a requirement, measure the miss, and report it as a trade-off.
