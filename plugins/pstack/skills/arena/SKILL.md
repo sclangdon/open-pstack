@@ -14,7 +14,7 @@ Open a todolist with one entry per phase (Frame, Fan out, Cross-judge, Pick, Gra
 Every candidate gets the same prompt, so the prompt is the contract.
 
 1. State the artifact each candidate is producing.
-2. Derive the rubric, 3-6 concrete gradeable criteria for what success looks like on *this* task. It is the picker's tool in Phase D. Candidates only see the task. Each requirement of the task is a pass or fail gate outside the rubric. A candidate that fails a gate is out, however well it scores.
+2. Derive the rubric, 3-6 concrete gradeable criteria for what success looks like on *this* task. It is the picker's tool in Phase D. Candidates only see the task. Each requirement of the task is a pass or fail gate outside the rubric. A numeric gate needs a source, per the **requirements-come-from-the-domain** principle skill. A candidate that fails a gate is out, however well it scores.
 3. Pick the runners. Use `arena runners` from the current harness's pstack model sheet when present. Otherwise use its [role default](../poteto-mode/references/model-catalog.md#role-defaults), one runner per entry. Spawn more runners when the arena covers multiple design directions. Use the same descriptor N times when the work is generation-bound rather than judgment-sensitive. Pick each subagent's effort for the job, per the Subagents section of the **poteto-mode** skill.
 4. Give each candidate its own output location (a git worktree where possible, otherwise `/tmp/arena-<slug>/candidate-<n>/`), per the **separate-before-serializing-shared-state** principle skill.
 

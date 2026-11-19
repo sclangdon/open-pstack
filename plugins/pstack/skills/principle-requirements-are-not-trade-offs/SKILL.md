@@ -6,7 +6,7 @@ user-invocable: false
 
 # Requirements Are Not Trade-offs
 
-A trade-off gives up something that no requirement demands. A requirement includes a measurable bar a principle sets, such as [Favour Performance](../principle-favour-performance/SKILL.md)'s "being slower is not acceptable". When a result misses a requirement beyond the noise floor, per [Explain the Number](../principle-explain-the-number/SKILL.md), the design has failed. Calling the miss a trade-off hands the user a decision that the requirement already made.
+A trade-off gives up something that no requirement demands. A requirement has a source: the user, a spec, or a derivation from the domain, per [Requirements Come from the Domain](../principle-requirements-come-from-the-domain/SKILL.md). A bar with no source is a guess. Derive it before you reopen a design to meet it. A requirement includes a measurable bar a principle sets, such as [Favour Performance](../principle-favour-performance/SKILL.md)'s "being slower is not acceptable". When a result misses a requirement beyond the noise floor, per [Explain the Number](../principle-explain-the-number/SKILL.md), the design has failed. Calling the miss a trade-off hands the user a decision that the requirement already made.
 
 **Failure mode:** The design round copies a popular project. A measurement shows the result is slower than the alternative and names the cost. The agent quotes "being slower is not acceptable", lists the miss as a trade-off, and stops. Each step after the measurement is wrong.
 

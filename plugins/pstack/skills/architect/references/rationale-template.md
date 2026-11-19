@@ -4,7 +4,7 @@ The prose that ships alongside the type sketch. One page. Sentence-case headings
 
 ## Problem
 
-*One paragraph. What we're trying to do, and what about the existing system or constraints makes the shape non-obvious. If [Phase A](../SKILL.md#phase-a-ground-the-problem) surfaced constraints the design must honor (existing types to interop with, callers we can't break, invariants that crossed our boundary), name them here so the reader sees the same constraints you saw. Then list each requirement with its measurable target and the workload it is measured on. Speed against the alternative is one, per favour-performance.*
+*One paragraph. What we're trying to do, and what about the existing system or constraints makes the shape non-obvious. If [Phase A](../SKILL.md#phase-a-ground-the-problem) surfaced constraints the design must honor (existing types to interop with, callers we can't break, invariants that crossed our boundary), name them here so the reader sees the same constraints you saw. Then list each requirement with its measurable target, the target's source, and the workload it is measured on. A source is the user, a spec, or a derivation from the domain, per requirements-come-from-the-domain. Speed against the alternative is one, per favour-performance.*
 
 ## Usage (caller's view)
 

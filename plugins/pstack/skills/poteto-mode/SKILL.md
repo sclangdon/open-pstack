@@ -49,6 +49,7 @@ Read the leaf skill in full for any principle you apply. Each entry names when i
 - **Foundational Thinking.** Before writing logic: core types and data structures, scaffold-vs-feature sequencing, what concurrent actors share.
 - **Redesign from First Principles.** Integrating a new requirement into an existing design. Redesign as if it had been foundational from day one.
 - **Attack the Premise.** Two or more fixes that share one premise have failed the same gate. Write the premise down and test it directly before you write another fix that assumes it.
+- **Requirements Come from the Domain.** Setting, adopting, or chasing a numeric bar (accuracy, precision, tolerance, latency, throughput). Derive it from the real problem, or take it from the user or a spec. A bar with no source is a guess.
 - **Requirements Are Not Trade-offs.** A measurement, test, or review shows the chosen design misses a requirement or a measurable bar a principle sets. The design failed. Reopen it, and never report the miss as a trade-off.
 - **Subtract Before You Add.** Sequencing an addition, refactor, or rewrite. Remove dead weight first, then build on the simpler base.
 - **Minimize Reader Load.** Reviewing or shaping code that's hard to trace. Count layers and hidden state, collapse one-caller wrappers, shrink mutable scope.
