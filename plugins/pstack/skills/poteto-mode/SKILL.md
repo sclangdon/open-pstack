@@ -45,6 +45,7 @@ Read the leaf skill in full for any principle you apply. Each entry names when i
 
 - **Laziness Protocol.** Refactoring, sizing a diff, deciding scope, or tempted to add abstractions, layers, or signal threading. Bias to deletion, the smallest change that solves the problem, and only the work that was asked for.
 - **Favour Performance.** Designing or implementing anything, or trading speed against another goal. Performance is the first feature. Measure competing ideas and keep the fastest for the usual case.
+- **Tune for the Supported Hardware.** Writing, tuning, or benchmarking performance-sensitive code. Tune for the whole range of hardware the software supports, never for the machine you run on. A win on one machine is a hypothesis.
 - **Be Boring.** Designing or writing code, or tempted to cut lines, build a system, add an abstraction, write event-based code, or split a long function. Use language basics, one expression per line.
 - **Foundational Thinking.** Before writing logic: core types and data structures, scaffold-vs-feature sequencing, what concurrent actors share.
 - **Redesign from First Principles.** Integrating a new requirement into an existing design. Redesign as if it had been foundational from day one.

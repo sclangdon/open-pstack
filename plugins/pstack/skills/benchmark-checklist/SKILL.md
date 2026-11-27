@@ -1,6 +1,6 @@
 ---
 name: benchmark-checklist
-description: "Vet a perf measurement (limiter, tuning, limits, errors, repeatability, relevance, and whether the work happened) before you report or act on it. Use when you run a benchmark or report a speedup or regression you measured."
+description: "Vet a perf measurement (limiter, tuning, limits, errors, repeatability, relevance, whether the work happened, and whether it holds on other hardware) before you report or act on it. Use when you run a benchmark or report a speedup or regression you measured."
 ---
 
 # Benchmark checklist
@@ -13,7 +13,7 @@ For a quick ballpark the user asked for, one run is enough. Still check question
 
 - Write down the claim you expect to make, in the words you would ship ("export is 30% faster at p50 on the 60k-row dataset"). The questions test that sentence.
 - Read the measurement script. Note what it times, counts, and ignores.
-- Check the load average with `uptime` and the core count with `nproc`. If the machine is busy, find out what is running. If you cannot stop it, interleave the sides so both see the same noise, and say so in the report.
+- Record the hardware: CPU model, core count, cache and memory sizes, and GPU if one is used. Check the load average with `uptime`. If the machine is busy, find out what is running. If you cannot stop it, interleave the sides so both see the same noise, and say so in the report.
 
 ## The questions
 
@@ -24,11 +24,12 @@ For a quick ballpark the user asked for, one run is enough. Still check question
 5. **Does it reproduce?** Run each side at least 5 times, alternating (A, B, A, B, and so on) so warmup, lazy initialization, caches, and drift favor neither. Report the median and range. A gap smaller than the run-to-run variation is no measurable difference. When the call is close, use a rank-sum test or the harness's own statistics.
 6. **Does it matter?** Next to any micro result, measure the end-to-end path a user waits on, with realistic data sizes and concurrency, and report the micro result as a share of the whole. A helper that takes 1% of a request can make the request at most 1% faster, however fast the helper gets.
 7. **Did it even happen?** Confirm the work ran inside the timed region: the request reached the server, the rows were written, the bytes were read, and the code used the result. Lazy code (generators nobody iterates, promises nobody awaits, results the JIT can discard) and timeouts produce numbers for work that never happened.
+8. **Does it hold on other hardware?** A result from one machine says nothing about the rest of the hardware the software supports. Measure the general path at the low end of that range and on another microarchitecture, or say which part of the range went unmeasured. Measure a hardware-specific path on the hardware it targets, against the general path on the same machine. A tuned constant should sit on the flat part of its sweep, not a peak this machine happens to have. Apply [Tune for the Supported Hardware](../principle-tune-for-the-supported-hardware/SKILL.md).
 
 ## Report
 
 - Lead with the verdict: faster, slower, no measurable difference, or inconclusive.
-- Give the number with its unit, the run count, the range, and the limiter. For example, "p50 41 ms → 33 ms, median of 7 runs per side, range 32 to 35 ms after, bound by JSON parsing on one core."
+- Give the number with its unit, the run count, the range, the limiter, and the hardware it ran on. For example, "p50 41 ms → 33 ms, median of 7 runs per side, range 32 to 35 ms after, bound by JSON parsing on one core, on an 8-core Ryzen 7 5800X with 32 MB L3; not measured below 4 cores."
 - Call the verdict inconclusive when you claim a difference but cannot name the limiter, when a side ran untuned, or when you could not check questions 4 and 7. Name the gap.
 - Keep a PR body to one primary number, per the **Opening a PR** playbook. Put the runs, range, and limiter evidence in a linked artifact or notes file.
 
