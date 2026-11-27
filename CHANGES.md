@@ -3,6 +3,16 @@
 Open Pstack lands on green: Mergify merges a ready PR to main once verify and exact-head live-gate pass and no review thread is unresolved, and a workflow resolves Unfret's own threads. A PR that touches `.github/` or the Mergify config also waits for Unfret, and workflow changes require operator queueing.
 This port applies the Cursor → Claude Code substitutions in skill bodies. Earlier drafts left them flagged; this revision resolves them. A later pass added a Codex build that shares the same skills; see [Codex port](#codex-port) below.
 
+## 1.21.0-simon.4 tunes for the supported hardware
+
+This fork release keeps Open Pstack 1.21.0. It stops an agent from tuning performance-sensitive code to the machine it runs on. Software meant for a wide range of hardware gets block sizes, thread counts, and instruction sets chosen for one developer box, and runs slower, or not at all, elsewhere.
+
+**Tune for the Supported Hardware.** A new Core principle, `principle-tune-for-the-supported-hardware`, applies when an agent writes, tunes, or benchmarks performance-sensitive code. The agent takes the supported hardware range from the user or the project, hard-codes no fact about its own machine, builds for the range's instruction-set baseline with run-time dispatch for wider paths, and keeps a tuning choice only when it holds at the low end and on another microarchitecture. With one machine to measure on, it picks a value from the flat part of a sweep and reports what went unmeasured. A hardware-specific path that gains more than 10% on its hardware may ship beside the general path, chosen at run time from detected features.
+
+**Where it binds.** `principle-favour-performance` keeps the fastest idea across the supported hardware, and puts hand-written assembly behind run-time dispatch with a portable fallback. `benchmark-checklist` records the hardware with every number and adds question 8, which asks whether the result holds on other hardware.
+
+When you merge a later Open Pstack release, keep these lines in `poteto-mode/SKILL.md` and `benchmark-checklist/SKILL.md`.
+
 ## 1.21.0-simon.3 takes requirements from the domain
 
 This fork release keeps Open Pstack 1.21.0. It stops an agent from setting an arbitrary numeric bar and then treating it as binding. In one project an agent set a precision target that no one had derived. Reaching it cost weeks and performance, and the physics of the problem needed orders of magnitude less.
